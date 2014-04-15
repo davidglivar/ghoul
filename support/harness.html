@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ghoul</title>
+</head>
+<body>
+  <div id="ghoul"></div>
+  <script type="text/javascript" src="{{frameworkPath}}"></script>
+  <script>mocha.ui('bdd');</script>
+  <script type="text/javascript" src="{{assertionPath}}"></script>
+  <script type="text/javascript" src="{{src}}"></script>
+  <script>
+    mochaPhantomJS.run();
+  </script>
+</body>
+</html>

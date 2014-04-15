@@ -1,0 +1,36 @@
+{
+  "name": "ghoul",
+  "version": "0.0.1",
+  "description": "Ghoul is a tool to help with frontend testing with mocha",
+  "main": "ghoul.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:davidglivar/ghoul.git"
+  },
+  "bin": {
+    "ghoul": "./bin/ghoul"
+  },
+  "keywords": [
+    "test",
+    "mocha",
+    "phantomjs",
+    "mocha-phantomjs",
+    "front",
+    "frontend",
+    "browser",
+    "browserify"
+  ],
+  "author": "David Glivar <davidglivar@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^3.41.0",
+    "commander": "^2.2.0",
+    "mocha-phantomjs": "^3.3.2",
+    "phantomjs": "^1.9.7-3",
+    "temporary": "0.0.8",
+    "expect.js": "^0.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  }
+}
