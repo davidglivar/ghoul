@@ -20,18 +20,26 @@ describe('Ghoul', function () {
   describe('opts', function () {
     
     it('is a public namespace', function () {
-      ghoul_default = new Ghoul();
-      expect(ghoul_default.opts).to.be.ok();
-      expect(ghoul_default.opts).to.be.an('object');
+      ghoul = new Ghoul();
+      expect(ghoul.opts).to.be.ok();
+      expect(ghoul.opts).to.be.an('object');
     });
 
     it('contains the proper keys', function () {
       ghoul = new Ghoul();
       var keys = Object.keys(ghoul.opts);
       expect(keys.length).to.be(3);
-      keys.forEach(function (key) {
-        expect(key in ghoul.opts).to.be(true);
-      });
+      expect(ghoul.opts).to.only.have.keys(['assertionPath', 'frameworkPath', 'testDirectory']);
+    });
+
+    it('only merges in proper options', function () {
+      ghoul = new Ghoul({ invalid: true });
+      expect(ghoul.opts).to.not.have.property('invalid');
+    });
+
+    it('properly overrides defaults with passed options', function () {
+      ghoul = new Ghoul({ assertionPath: './node_modules/some/other/lib.js' });
+      expect(ghoul.opts.assertionPath).to.match(/some\/other\/lib\.js$/);
     });
   });
 });

@@ -33,7 +33,7 @@ function _merge(dest/*, srcs...*/) {
   if (srcs.length) {
     srcs.forEach(function (src) {
       for (var key in src) {
-        if (src.hasOwnProperty(key)) {
+        if (src.hasOwnProperty(key) && dest.hasOwnProperty(key)) {
           if (/Path$/.test(key)) {
             dest[key] = path.resolve(_cwd, src[key]);
           } else {
