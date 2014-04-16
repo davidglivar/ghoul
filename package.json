@@ -10,6 +10,9 @@
   "bin": {
     "ghoul": "./bin/ghoul"
   },
+  "scripts": {
+    "test": "make test"
+  },
   "keywords": [
     "test",
     "mocha",
