@@ -18,8 +18,7 @@ var _cwd = process.cwd()
      * @property {string} assertionPath - Path to assertions library
      * @property {string} frameworkPath - Path to browser-safe framework
      *  script path (defaults to internal mocha dependency)
-     * @property {string} phantomjsPath - Path to phantomjs executable (defaults
-     *  to internal dependency)
+     * @property {string} reporter - The mocha reporter to use
      * @property {string} testDirectory - Path to test directory
      */
   , _defaults = {
@@ -97,12 +96,23 @@ function Ghoul(settings) {
   this.harness = _template(harness, this.settings);
 }
 
+Ghoul.prototype._filterFiles = function () {
+  var files = fs.readdirSync(this.settings.testDirectory)
+    , cleaned = [];
+  for (var i = 0, l = files.length; i < l; i++) {
+    if (path.extname(files[i]) === '.js') {
+      cleaned.push(files[i]);
+    }
+  }
+  return cleaned;
+};
+
 Ghoul.prototype.run = function () {
   var self = this
     , bundlePath = path.join(__dirname, 'support/_bundle.js')
     , bundler
     , err = null
-    , files = fs.readdirSync(this.settings.testDirectory)
+    , files = this._filterFiles()
     , fileContent = ''
     , harnessPath = path.join(__dirname, 'support/_harness.html')
     , index = new TmpFile()
