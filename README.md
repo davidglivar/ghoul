@@ -1,7 +1,7 @@
 Ghoul
 =====
 
-Ghoul is a wrapper around [mocha-phantomjs](https://github.com/Medium/phantomjs)
+Ghoul is a wrapper around [mocha-phantomjs](https://github.com/metaskills/mocha-phantomjs)
 with a few strict assumptions:
 
 1. You're writing tests for front-end consumption only

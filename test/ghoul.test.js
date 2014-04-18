@@ -42,4 +42,13 @@ describe('Ghoul', function () {
       expect(ghoul.opts.assertionPath).to.match(/some\/other\/lib\.js$/);
     });
   });
+
+  describe('#run()', function () {
+    
+    it('is exposed on the constructor instance', function () {
+      ghoul = new Ghoul();
+      expect(ghoul.run).to.be.ok();
+      expect(ghoul.run).to.be.a('function');
+    });
+  });
 });
