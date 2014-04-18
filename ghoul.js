@@ -25,6 +25,7 @@ var _cwd = process.cwd()
   , _defaults = {
       assertionPath: path.resolve(__dirname, './node_modules/expect.js/index.js'),
       frameworkPath: path.resolve(__dirname, './node_modules/mocha-phantomjs/node_modules/mocha/mocha.js'),
+      reporter: 'spec',
       testDirectory: path.resolve(_cwd, './test')
     };
 
@@ -87,13 +88,13 @@ function _template(t, map) {
   return t;
 }
 
-function Ghoul(opts) {
+function Ghoul(settings) {
   var harness = fs.readFileSync(
     path.join(__dirname, 'support/harness.html'), 'utf-8'
   );
 
-  this.opts = _merge(_defaults, opts || {});
-  this.harness = _template(harness, this.opts);
+  this.settings = _merge(_defaults, settings || {});
+  this.harness = _template(harness, this.settings);
 }
 
 Ghoul.prototype.run = function () {
@@ -101,12 +102,12 @@ Ghoul.prototype.run = function () {
     , bundlePath = path.join(__dirname, 'support/_bundle.js')
     , bundler
     , err = null
-    , files = fs.readdirSync(this.opts.testDirectory)
+    , files = fs.readdirSync(this.settings.testDirectory)
     , fileContent = ''
     , harnessPath = path.join(__dirname, 'support/_harness.html')
     , index = new TmpFile()
     , resolved = files.map(function (f) { 
-        return path.resolve(self.opts.testDirectory, f); 
+        return path.resolve(self.settings.testDirectory, f); 
       });
   resolved.forEach(function (f) { fileContent += 'require("'+f+'");'; });
 
@@ -127,7 +128,7 @@ Ghoul.prototype.run = function () {
 
     var mochaphantom = child_process.spawn(
       path.join(__dirname, 'node_modules/.bin/mocha-phantomjs'), 
-      [harnessPath], 
+      [harnessPath, '-R', self.settings.reporter], 
       { stdio: 'inherit' }
     );
 
