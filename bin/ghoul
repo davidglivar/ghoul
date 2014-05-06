@@ -8,6 +8,10 @@ var program = require('commander')
   , path = require('path')
   , Ghoul = require('../ghoul');
 
+// force require
+require('expect.js');
+require('phantomjs');
+
 program
   .version(JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8')).version)
   .option('-R, --reporter <name>', 'specify the reporter to use', 'spec')
