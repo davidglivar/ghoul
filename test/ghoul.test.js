@@ -28,12 +28,13 @@ describe('Ghoul', function () {
     it('contains the proper keys', function () {
       ghoul = new Ghoul();
       var keys = Object.keys(ghoul.settings);
-      expect(keys.length).to.be(4);
+      expect(keys.length).to.be(5);
       expect(ghoul.settings).to.only.have.keys([
        'assertionPath', 
        'frameworkPath', 
        'reporter',
-       'testDirectory'
+       'testDirectory',
+       'libs'
       ]);
     });
 
