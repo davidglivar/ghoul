@@ -1,6 +1,6 @@
 {
   "name": "ghoul",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ghoul is a tool to help with frontend testing with mocha",
   "main": "ghoul.js",
   "repository": {
