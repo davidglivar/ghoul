@@ -24,6 +24,7 @@ var _cwd = process.cwd()
   , _defaults = {
       assertionPath: path.resolve(__dirname, './node_modules/expect.js/index.js'),
       frameworkPath: path.resolve(__dirname, './node_modules/mocha-phantomjs/node_modules/mocha/mocha.js'),
+      libs: [],
       reporter: 'spec',
       testDirectory: path.resolve(_cwd, './test')
     };
@@ -131,7 +132,13 @@ Ghoul.prototype.run = function () {
     err = fs.writeFileSync(bundlePath, src);
     if (err) return console.error('Error writing bundled src:', err);
 
-    self.harness = _template(self.harness, { src: bundlePath });
+    var scripts = '';
+    if (self.settings.libs.length) {
+      self.settings.libs.forEach(function (lib) {
+        scripts += '<script src="'+lib+'"></script>'
+      });
+    }
+    self.harness = _template(self.harness, { src: bundlePath, libs: scripts });
 
     err = fs.writeFileSync(harnessPath, self.harness);
     if (err) return console.error('Error writing test harness:', err);
