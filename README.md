@@ -6,7 +6,7 @@ with a few strict assumptions:
 
 1. You're writing tests for front-end consumption only
 2. You're using CommonJS-style exports in your library (ie, browserify)
-3. You want to use [mocha](http://visionmedia.github.io/mocha/)
+3. You want to use [mocha](http://mochajs.org/)
 4. You want to use [expect.js](https://github.com/LearnBoost/expect.js/)
 5. You only want terminal output
 
